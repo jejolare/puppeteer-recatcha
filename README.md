@@ -34,6 +34,11 @@ const API_KEY = 'YOUR_API_KEY'; // Get it for free here: https://wit.ai/
     const captcha = await page.$(captchaSelector);
     const captchaChallenge = await page.$(challengeSelector);
 
-    await solve(page, API_KEY, captcha, captchaChallenge);
+    const result = await solve(page, API_KEY, captcha, captchaChallenge);
+    console.log(result);
+    
+    // { solved: true, error: null }
+    // or
+    // {  solved: false, error: Error: Unable to recognize speech... }
 })();
 ```
