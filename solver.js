@@ -42,6 +42,7 @@ export default async function solve(page, API_KEY, mainCaptchaElement, challenge
     
         const text = await response.text();
         const result = JSON.parse(`{ "entities"${text.split('"entities"')[1]}`).text; // This API is broken, the response has to be parsed like this
+        if (!result) throw new Error('Unable to recognize speech');
         await captchaChallengeFrame.type('#audio-response', result);
         await page.waitForTimeout(300);
         await captchaChallengeFrame.evaluate(() => document.querySelector('#recaptcha-verify-button').click());
