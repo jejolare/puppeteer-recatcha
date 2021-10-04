@@ -1,6 +1,6 @@
 {
   "name": "puppeteer-recaptcha",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Free, unlimited solution for automatic captcha solving in the browser with puppeteer",
   "main": "solver.js",
   "type": "module",
