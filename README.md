@@ -4,36 +4,36 @@ Free, unlimited solution for automatic captcha solving in the browser with puppe
 <h2>Common Usage</h2>
 
 ```js
-    // I recommend using puppeteer-extra-plugin-stealths
+// I recommend using puppeteer-extra-plugin-stealths
 
-    import puppeteer from 'puppeteer-extra';
-    import StealthPlugin from 'puppeteer-extra-plugin-stealth';
-    import solve from 'puppeteer-recaptcha';
+import puppeteer from 'puppeteer-extra';
+import StealthPlugin from 'puppeteer-extra-plugin-stealth';
+import solve from 'puppeteer-recaptcha';
 
-    puppeteer.use(StealthPlugin());
-    const API_KEY = 'YOUR_API_KEY'; // Get it for free here: https://wit.ai/
-    (async () => {
-        const browser = await puppeteer.launch({
-            args: [
-                '--disable-web-security', 
-                '--disable-features=IsolateOrigins', 
-                '--disable-site-isolation-trials'
-            ] // these arguments are required
-        });
+puppeteer.use(StealthPlugin());
+const API_KEY = 'YOUR_API_KEY'; // Get it for free here: https://wit.ai/
+(async () => {
+    const browser = await puppeteer.launch({
+        args: [
+            '--disable-web-security', 
+            '--disable-features=IsolateOrigins', 
+            '--disable-site-isolation-trials'
+        ] // these arguments are required
+    });
 
-        const page = await browser.newPage();
-        await page.goto('https://store.steampowered.com/join'); // your link
+    const page = await browser.newPage();
+    await page.goto('https://store.steampowered.com/join'); // your link
 
-        // These selectors are browser language dependent
-        const captchaSelector = 'iframe[title="reCAPTCHA"]';
-        const challengeSelector = 'iframe[title="recaptcha challenge"]';
-        
-        await page.waitForSelector(captchaSelector);
-        await page.waitForSelector(challengeSelector);
+    // These selectors are browser language dependent
+    const captchaSelector = 'iframe[title="reCAPTCHA"]';
+    const challengeSelector = 'iframe[title="recaptcha challenge"]';
 
-        const captcha = await page.$(captchaSelector);
-        const captchaChallenge = await page.$(challengeSelector);
+    await page.waitForSelector(captchaSelector);
+    await page.waitForSelector(challengeSelector);
 
-        await solver(page, API_KEY, captcha, captchaChallenge);
-    })();
+    const captcha = await page.$(captchaSelector);
+    const captchaChallenge = await page.$(challengeSelector);
+
+    await solver(page, API_KEY, captcha, captchaChallenge);
+})();
 ```
