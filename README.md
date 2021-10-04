@@ -1,3 +1,6 @@
+# puppeteer-recatcha
+Free, unlimited solution for automatic captcha solving in the browser with puppeteer. This package requires wit.ai API key (it's free).
+
 <h2>Common Usage</h2>
 ```js
     //I recommend using puppeteer-extra-plugin-stealths
