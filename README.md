@@ -2,17 +2,16 @@
 Free, unlimited solution for automatic captcha solving in the browser with puppeteer. This package requires wit.ai API key (it's free).
 
 <h2>Common Usage</h2>
+
 ```js
-   
-   //I recommend using puppeteer-extra-plugin-stealths
+    // I recommend using puppeteer-extra-plugin-stealths
+
     import puppeteer from 'puppeteer-extra';
     import StealthPlugin from 'puppeteer-extra-plugin-stealth';
     import solve from 'puppeteer-recaptcha';
 
     puppeteer.use(StealthPlugin());
-
     const API_KEY = 'YOUR_API_KEY'; // Get it for free here: https://wit.ai/
-
     (async () => {
         const browser = await puppeteer.launch({
             args: [
@@ -23,7 +22,7 @@ Free, unlimited solution for automatic captcha solving in the browser with puppe
         });
 
         const page = await browser.newPage();
-        await page.goto('https://store.steampowered.com/join');
+        await page.goto('https://store.steampowered.com/join'); // your link
 
         // These selectors are browser language dependent
         const captchaSelector = 'iframe[title="reCAPTCHA"]';
@@ -36,5 +35,5 @@ Free, unlimited solution for automatic captcha solving in the browser with puppe
         const captchaChallenge = await page.$(challengeSelector);
 
         await solver(page, API_KEY, captcha, captchaChallenge);
-    });
+    })();
 ```
