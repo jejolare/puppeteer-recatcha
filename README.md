@@ -34,6 +34,6 @@ const API_KEY = 'YOUR_API_KEY'; // Get it for free here: https://wit.ai/
     const captcha = await page.$(captchaSelector);
     const captchaChallenge = await page.$(challengeSelector);
 
-    await solver(page, API_KEY, captcha, captchaChallenge);
+    await solve(page, API_KEY, captcha, captchaChallenge);
 })();
 ```

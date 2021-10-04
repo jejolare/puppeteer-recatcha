@@ -3,8 +3,13 @@
   "version": "1.0.2",
   "description": "Free, unlimited solution for automatic captcha solving in the browser with puppeteer",
   "main": "solver.js",
+  "type": "module",
   "author": "https://github.com/jejolare",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jejolare/puppeteer-recatcha"
+  },
   "dependencies": {
     "node-fetch": "^3.0.0"
   }
