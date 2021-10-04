@@ -4,7 +4,7 @@ Free, unlimited solution for automatic captcha solving in the browser with puppe
 <h2>Installation</h2>
 
 ```sh
-npm install node-fetch
+npm install puppeteer-recatcha
 ```
 
 <h2>Common Usage</h2>
