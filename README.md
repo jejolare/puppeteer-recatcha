@@ -3,7 +3,8 @@ Free, unlimited solution for automatic captcha solving in the browser with puppe
 
 <h2>Common Usage</h2>
 ```js
-    //I recommend using puppeteer-extra-plugin-stealths
+   
+   //I recommend using puppeteer-extra-plugin-stealths
     import puppeteer from 'puppeteer-extra';
     import StealthPlugin from 'puppeteer-extra-plugin-stealth';
     import solve from 'puppeteer-recaptcha';
