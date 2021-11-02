@@ -20,6 +20,8 @@ export default async function solve(page, API_KEY) {
                 }
             }
         });
+        if (!challengeID) return { solved: true, error: null };
+        
         const challengeCaptchaElement = await page.$$('iframe');
         const captchaChallengeFrame = await challengeCaptchaElement[challengeID].contentFrame();
 
