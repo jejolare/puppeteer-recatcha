@@ -1,13 +1,28 @@
 import fetch from "node-fetch";
 
-export default async function solve(page, API_KEY, mainCaptchaElement, challengeCaptchaElement) {
+export default async function solve(page, API_KEY) {
     try {
+        const captchaSelector = 'iframe[title="reCAPTCHA"]';
+        await page.waitForSelector(captchaSelector);
 
+        const mainCaptchaElement = await page.$(captchaSelector);
         const frame = await mainCaptchaElement.contentFrame();
         await frame.waitForSelector('#recaptcha-anchor', { timeout: 4000 });
+
         await frame.click('#recaptcha-anchor');
-    
-        const captchaChallengeFrame = await challengeCaptchaElement.contentFrame();
+        await page.waitForTimeout(600);
+
+        const challengeID = await page.evaluate(() => {
+            for (let index = 0; index < 20; index++) {
+                const captcha = document.querySelectorAll('iframe')[index];
+                if (captcha && captcha.title.includes('recaptcha')) {
+                    return index;
+                }
+            }
+        });
+        const challengeCaptchaElement = await page.$$('iframe');
+        const captchaChallengeFrame = await challengeCaptchaElement[challengeID].contentFrame();
+
         await captchaChallengeFrame.evaluate(() => {
             return new Promise((res, rej) =>  {
                 setTimeout(() => rej(), 4000);
